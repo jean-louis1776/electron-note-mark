@@ -12,6 +12,7 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "noUnusedLocals": false,
+    "types": ["electron"],
     "paths": {
       "@renderer/*": [
         "src/renderer/src/*"
