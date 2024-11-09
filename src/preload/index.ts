@@ -1,13 +1,19 @@
 import { contextBridge } from 'electron'
 
-if (process.contextIsolated) {
-  throw new Error('contextIsolation must be enabled in the BrowserWindow')
-}
+contextBridge.exposeInMainWorld('context', {
+  locale: navigator.language
+})
 
-try {
-  contextBridge.exposeInMainWorld('context', {
-    locale: navigator.language
-  })
-} catch (error) {
-  console.error(error)
-}
+// console.log('Is nativeTheme available?', typeof nativeTheme !== 'undefined')
+// console.log('nativeTheme shouldUseDarkColors:', nativeTheme?.shouldUseDarkColors)
+//
+// if (nativeTheme) {
+//   contextBridge.exposeInMainWorld('theme', {
+//     isDarkMode: nativeTheme.shouldUseDarkColors,
+//     onThemeUpdated: (callback) => {
+//       nativeTheme.on('updated', () => callback(nativeTheme.shouldUseDarkColors))
+//     }
+//   })
+// } else {
+//   console.error('nativeTheme is undefined')
+// }
